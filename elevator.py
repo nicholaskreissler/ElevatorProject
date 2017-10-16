@@ -113,3 +113,4 @@ while(True):  # Final stages of the program, puts the elevator in a loop allowin
     #Out of the original if, else statement
     numberofpeopleontheelevator = numberofpeopleontheelevator + int(input('How many people have entered the elevator: '))  # Adds the new amount of people that enter to the old amount. Use a negative number if people leave
 
+#Test
