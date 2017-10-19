@@ -1,7 +1,19 @@
-iimport time
-ret = True
+import time
+ret = False
+def insidecalluplist(variable2):
+    variable3 = input("What floors do the people want to travel too: ")
+    if ',' in variable3:
+        variable3 = list(eval(variable3))
+        for integers in variable3:
+            if integers not in variable2:
+                variable2 += [integers]
+    else:
+        variable3 = eval(variable4)
+        if variable3 not in variable2:
+            variable2 += [variable3]
 def outsidecalldownlist(variable,variable2):
     variable2.sort()
+    variable4 = len(variable2)
     x=0
     for items in variable2:
         x+=1
@@ -14,10 +26,14 @@ def outsidecalldownlist(variable,variable2):
                 if floors == items:
                     print('Doors opening.')
                     time.sleep(1)
-                    print("Picking people up at: " + str(items))
+                    if variable4 >= len(variable2) - variable4:
+                        print("Picking people up at: " + str(items))
+                    else:
+                        print("People Exiting")
                     time.sleep(1)
                     print('Doors Closing')
-                    # this is where function goes
+                    if variable4 >= len(variable2) - variable4:
+                        insidecalluplist(variable2)
                     time.sleep(1)
                     variable = items
         else:
@@ -27,9 +43,14 @@ def outsidecalldownlist(variable,variable2):
                 if floors == items:
                     print('Doors opening.')
                     time.sleep(1)
-                    print("Picking people up at: " + str(items))
+                    if variable4 >= len(variable2) - variable4:
+                        print("Picking people up at: " + str(items))
+                    else:
+                        print("People Eciting")
                     time.sleep(1)
                     print('Doors Closing')
+                    if variable4 >= len(variable2) - variable4:
+                        insidecalluplist(variable2)
                     time.sleep(1)
                     variable = items
 def outsidecalldownint(variable, variable2):
@@ -98,34 +119,26 @@ while(True):
         
         if ',' in variable2:
             variable2 = list(eval(variable2))
-        
-        else:
-            variable2 = eval(variable2)
-        
-        if type(variable2) == list:
-            if variable < max(variable2):
-                outsidecalluplist(variable,variable2)
+            if variable > min(variable2) and variable < max(variable2):
+                print('it works')
+            elif variable < max(variable2):
+                outsidecalluplist(variable, variable2)
                 variable = max(variable2)
             elif variable > min(variable2):
                 outsidecalldownlist(variable, variable2)
                 variable = min(variable2)
-        else:
-            if variable < variable2:
-                outsidecallupint(variable,variable2)
-            elif variable > variable2:
-                outsidecalldownint(variable,variable2)
-            variable = variable2
-        
-        ret = False
-        break
 
-    while ret == False:
-        variable4 = (input('What floor(s) did the people want to travel to: '))
-        
-        if ',' in variable4:
-            variable4 = list(eval(variable4))
         else:
-            variable4 = eval(variable4)
+            variable2 = eval(variable2)
+            if variable < variable2:
+                outsidecallupint(variable, variable2)
+            elif variable > variable2:
+                outsidecalldownint(variable, variable2)
+            variable = variable2
+
+
+
         
-        ret = True
-        break
+    while ret == False:
+        variable = int(input('What is the position of the elevator:'))
+
